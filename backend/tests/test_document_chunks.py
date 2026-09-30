@@ -93,7 +93,7 @@ def test_create_document_chunks() -> None:
     assert isinstance(payload, list)
     assert len(payload) >= 1
     assert payload[0]["document_id"] == document_id
-    assert payload[0]["embedding"] is None
+    assert "embedding" not in payload[0]
 
 
 def test_get_document_chunks() -> None:
