@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: psycho-hunter-db
+    environment:
+      POSTGRES_DB: psycho_hunter
+      POSTGRES_USER: psycho_hunter
+      POSTGRES_PASSWORD: psycho_hunter_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U psycho_hunter -d psycho_hunter"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
